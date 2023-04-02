@@ -53,6 +53,6 @@ def process_queries(self, queries):
     return result
 
 if __name__ == '__main__':
-    write_responses(process_queries(queries, read_queries()))
+    write_responses(process_queries(read_queries()))
 
 
