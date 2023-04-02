@@ -21,7 +21,7 @@ def read_queries():
 def write_responses(result):
     print('\n'.join(result))
 
-def process_queries(queries):
+def process_queries(self, queries):
     result = []
     # Keep list of all existing (i.e. not deleted yet) contacts.
     contacts = []
