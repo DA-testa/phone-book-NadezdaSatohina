@@ -3,7 +3,7 @@
 bucket_size = 256
 buckets = [[] for i in range(bucket_size)]
 
-def _hash_func(self, i):
+def _hash_func(i):
     return i % bucket_size
 
 
@@ -21,13 +21,13 @@ def read_queries():
 def write_responses(result):
     print('\n'.join(result))
 
-def process_queries(self, queries):
+def process_queries(queries):
     result = []
     # Keep list of all existing (i.e. not deleted yet) contacts.
     contacts = []
     for cur_query in queries:
         hashed = _hash_func(cur_query.number)
-        bucket = self.buckets[hashed]
+        bucket = buckets[hashed]
         
         if cur_query.type == 'add':    
             for contact in bucket:
@@ -35,7 +35,7 @@ def process_queries(self, queries):
                     contact.name = cur_query.name
                     break
             else:
-                self.buckets[hashed].append(cur_query)
+                buckets[hashed].append(cur_query)
                 
         elif cur_query.type == 'del':
             for j in range(len(bucket)):
@@ -54,5 +54,6 @@ def process_queries(self, queries):
 
 if __name__ == '__main__':
     write_responses(process_queries(read_queries()))
+
 
 
